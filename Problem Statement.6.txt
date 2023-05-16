@@ -1,0 +1,72 @@
+class Node {
+    int data;
+    Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class CircularLinkedList {
+    Node head;
+
+    public CircularLinkedList() {
+        head = null;
+    }
+
+    // Function to insert a new element in a sorted circular linked list
+    public void insert(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) { // If the list is empty, make the new node the head
+            head = newNode;
+            newNode.next = head;
+        } else if (data <= head.data) { // If the new element is smaller than or equal to the head, insert at the beginning
+            newNode.next = head;
+            Node current = head;
+            while (current.next != head) {
+                current = current.next;
+            }
+            current.next = newNode;
+            head = newNode;
+        } else { // Insert the new element at the appropriate position
+            Node current = head;
+            while (current.next != head && current.next.data < data) {
+                current = current.next;
+            }
+            newNode.next = current.next;
+            current.next = newNode;
+        }
+    }
+
+    // Function to display the elements of the circular linked list
+    public void display() {
+        if (head == null) {
+            System.out.println("The circular linked list is empty.");
+            return;
+        }
+
+        Node current = head;
+        do {
+            System.out.print(current.data + " ");
+            current = current.next;
+        } while (current != head);
+
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        CircularLinkedList list = new CircularLinkedList();
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+        list.insert(40);
+        list.insert(25);
+
+        System.out.println("Elements of the circular linked list:");
+        list.display();
+    }
+}
