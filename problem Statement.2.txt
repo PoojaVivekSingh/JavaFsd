@@ -1,0 +1,21 @@
+import java.util.Arrays;
+import java.util.List;
+
+public class FourthSmallestElement {
+    public static int findFourthSmallest(List<Integer> numbers) {
+        if (numbers.size() < 4) {
+            throw new IllegalArgumentException("List must contain at least 4 elements");
+        }
+        
+        Integer[] sortedArray = numbers.toArray(new Integer[0]);
+        Arrays.sort(sortedArray);
+        
+        return sortedArray[3];
+    }
+
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(9, 2, 5, 1, 7, 4, 8, 3, 6);
+        int fourthSmallest = findFourthSmallest(numbers);
+        System.out.println("The fourth smallest element is: " + fourthSmallest);
+    }
+}
