@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class SumOfElementsInRange {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements (n): ");
+        int n = scanner.nextInt();
+
+        int[] arr = new int[n];
+        System.out.println("Enter the elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        System.out.print("Enter the starting index (L): ");
+        int L = scanner.nextInt();
+
+        System.out.print("Enter the ending index (R): ");
+        int R = scanner.nextInt();
+
+        int sum = calculateSum(arr, L, R);
+        System.out.println("Sum of elements in the range " + L + " to " + R + ": " + sum);
+
+        scanner.close();
+    }
+
+    public static int calculateSum(int[] arr, int L, int R) {
+        int sum = 0;
+        for (int i = L; i <= R; i++) {
+            sum += arr[i];
+        }
+        return sum;
+    }
+}
